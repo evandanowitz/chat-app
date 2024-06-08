@@ -68,6 +68,14 @@ const StartScreen = ({ navigation }) => {
             </View>
           </View>
           
+          {/* Start Chat button. TouchableOpacity is a more customizable button. Added bgColor to navigate */}
+          <TouchableOpacity 
+            style={styles.chatButton}
+            title="Start Chatting"
+            onPress={() => navigation.navigate('ChatScreen', { name: name, bgColor: bgColor })}
+          >
+            <Text style={styles.chatButtonText}>Start Chatting</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
