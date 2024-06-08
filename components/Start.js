@@ -14,6 +14,9 @@ const StartScreen = ({ navigation }) => {
       <ImageBackground style={styles.imageBackground} source={imageBackground}>
         {/* App Title */}
         <Text style={styles.title}>Chat App</Text>
+        {/* View component holding all main elements */}
+        <View style={styles.box}>
+        </View>
       </ImageBackground>
     </View>
   )
