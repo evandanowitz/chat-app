@@ -10,6 +10,9 @@ const StartScreen = ({ navigation }) => {
   return (
     // Entire component container
     <View style={styles.container}>
+      {/* App image background */}
+      <ImageBackground style={styles.imageBackground} source={imageBackground}>
+      </ImageBackground>
     </View>
   )
 }
