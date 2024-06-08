@@ -8,6 +8,9 @@ const StartScreen = ({ navigation }) => {
   const [bgColor, setBgColor] = useState('');
 
   return (
+    // Entire component container
+    <View style={styles.container}>
+    </View>
   )
 }
 
