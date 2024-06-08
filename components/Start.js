@@ -16,6 +16,13 @@ const StartScreen = ({ navigation }) => {
         <Text style={styles.title}>Chat App</Text>
         {/* View component holding all main elements */}
         <View style={styles.box}>
+          {/* TextInput */}
+          <TextInput
+            style={styles.textInput}
+            value={name}
+            onChangeText={setName}
+            placeholder="Your Name"
+          />
         </View>
       </ImageBackground>
     </View>
