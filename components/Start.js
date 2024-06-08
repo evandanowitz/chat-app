@@ -23,6 +23,51 @@ const StartScreen = ({ navigation }) => {
             onChangeText={setName}
             placeholder="Your Name"
           />
+          {/* Entire background color element */}
+          <View style={styles.bgColorBox}>
+            {/* Choose Background Color text */}
+            <Text style={styles.chooseBgColorText}>Choose Background Color:</Text>
+            {/* Container holding all background color buttons */}
+            <View style={styles.bgColorButtonsContainer}>
+              {/* Individual background color button */}
+              <TouchableOpacity 
+                style={[
+                  styles.bgColorButtons, 
+                  { backgroundColor: '#090C08' }, 
+                  bgColor === '#090C08' && styles.selectedBgColor
+                ]}
+                onPress={() => setBgColor('#090C08')}
+              />
+              {/* Individual background color button */}
+              <TouchableOpacity
+                style={[
+                  styles.bgColorButtons, 
+                  { backgroundColor: '#474056' }, 
+                  bgColor === '#474056' && styles.selectedBgColor
+                ]}  
+                onPress={() => setBgColor('#474056')}
+              />
+              {/* Individual background color button */}
+              <TouchableOpacity
+                style={[
+                  styles.bgColorButtons, 
+                  { backgroundColor: '#8A95A5' }, 
+                  bgColor === '#8A95A5' && styles.selectedBgColor
+                ]}  
+                onPress={() => setBgColor('#8A95A5')}
+              />
+              {/* Individual background color button */}
+              <TouchableOpacity
+                style={[
+                  styles.bgColorButtons, 
+                  { backgroundColor: '#B9C6AE' }, 
+                  bgColor === '#B9C6AE' && styles.selectedBgColor
+                ]}  
+                onPress={() => setBgColor('#B9C6AE')}
+              />
+            </View>
+          </View>
+          
         </View>
       </ImageBackground>
     </View>
