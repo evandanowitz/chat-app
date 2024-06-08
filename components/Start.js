@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 
+const StartScreen = ({ navigation }) => {
+  const [name, setName] = useState('');
+  const imageBackground = require('../assets/background-img.png');
+  // Add icon image from assets folder to TextInput using Image component from react-native
+  const [bgColor, setBgColor] = useState('');
+
+  return (
+  )
+}
 
 // STILL NEED TO CUT DOWN ON DUPLICATE CODE LINES IN STYLES. See Exercise 5.1
 const styles = StyleSheet.create({
