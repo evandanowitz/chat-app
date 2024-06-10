@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bubble, GiftedChat } from 'react-native-gifted-chat'; // import GiftedChat library for chat interface
 
 const ChatScreen = ({ route, navigation }) => {
