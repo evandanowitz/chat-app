@@ -54,7 +54,9 @@ const ChatScreen = ({ route, navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
-      <Text>Chat Screen</Text>
+      {/* Render GiftedChat component that comes with its own props. */}
+      <GiftedChat
+      />
     </View>
   );
 }
