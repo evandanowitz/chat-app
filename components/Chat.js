@@ -56,6 +56,10 @@ const ChatScreen = ({ route, navigation }) => {
     <View style={[styles.container, { backgroundColor: bgColor }]}>
       {/* Render GiftedChat component that comes with its own props. */}
       <GiftedChat
+        messages={messages}
+        renderBubble={renderBubble} // Add and customize renderBubble component to change speech bubble color
+        onSend={messages => onSend(messages)}
+        user={{ _id: 1 }}
       />
     </View>
   );
