@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { Bubble, GiftedChat } from 'react-native-gifted-chat'; // import GiftedChat library for chat interface
 
 const ChatScreen = ({ route, navigation }) => {
   // route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when it was navigated to from StartScreen
