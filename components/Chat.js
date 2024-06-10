@@ -9,6 +9,12 @@ const ChatScreen = ({ route, navigation }) => {
   // messages state makes sense here, as a chat app needs to send, receive, and display messages.
   const [messages, setMessages] = useState([]);
 
+  // the onSend() function is called when a user sends a message.
+  // the append() function appends the new message to the newMessage array.
+  const onSend = (newMessages) => {
+    setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
+  }
+
   useEffect(() => {
     navigation.setOptions({ title: name });
   }, []);
