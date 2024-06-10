@@ -61,6 +61,9 @@ const ChatScreen = ({ route, navigation }) => {
         onSend={messages => onSend(messages)}
         user={{ _id: 1 }}
       />
+      {/* Fix for input field in ChatScreen being hidden by Keyboard on certain Android devices */}
+      { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
+      { Platform.OS === 'ios' ? <KeyboardAvoidingView behavior="padding" /> : null }
     </View>
   );
 }
@@ -68,8 +71,6 @@ const ChatScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 });
 
