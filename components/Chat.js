@@ -15,8 +15,30 @@ const ChatScreen = ({ route, navigation }) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
   }
 
+  // this useEffect function gets called right after the ChatScreen component mounts
   useEffect(() => {
-    navigation.setOptions({ title: name });
+    navigation.setOptions({ title: name }); // functions in useEffect execute after component mounts
+    setMessages([
+      /* Messages must follow a certain format to work with Gifted Chat library. 
+      Each message requires an ID, a creation date, and a user object.
+      Each user object requires at least a user ID, name, and avatar. */
+      {
+        _id: 1,
+        text: 'Hello developer',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 2,
+        text: 'This is a system message',
+        createdAt: new Date(),
+        system: true,
+      },
+    ]);
   }, []);
 
   return (
