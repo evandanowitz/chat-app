@@ -15,13 +15,12 @@ const ChatScreen = ({ route, navigation }) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
   }
 
-  // this useEffect function gets called right after the ChatScreen component mounts
+  // useEffect gets called right after the ChatScreen component mounts
   useEffect(() => {
     navigation.setOptions({ title: name }); // functions in useEffect execute after component mounts
     setMessages([
-      /* Messages must follow a certain format to work with Gifted Chat library. 
-      Each message requires an ID, a creation date, and a user object.
-      Each user object requires at least a user ID, name, and avatar. */
+      /* Messages must follow a certain format to work with Gifted Chat library. Each message requires an ID, 
+      a creation date, and a user object. Each user object requires at least a user ID, name, and avatar. */
       {
         _id: 1,
         text: 'Hello developer',
@@ -43,13 +42,15 @@ const ChatScreen = ({ route, navigation }) => {
 
   const renderBubble = (props) => {
     // returned Bubble component is from Gifted Chat's own package. Must import it.
-    return <Bubble
-      {...props}
-      wrapperStyle={{
-        right: { backgroundColor: '#000' },
-        left: { backgroundColor: '#fff' }
-      }}
-    />
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: { backgroundColor: '#000' },
+          left: { backgroundColor: '#fff' }
+        }}
+      />
+    )
   }
 
   return (
@@ -64,6 +65,7 @@ const ChatScreen = ({ route, navigation }) => {
       {/* Fix for input field in ChatScreen being hidden by Keyboard on certain Android devices */}
       { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
       { Platform.OS === 'ios' ? <KeyboardAvoidingView behavior="padding" /> : null }
+      {/* <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} /> */}
     </View>
   );
 }
