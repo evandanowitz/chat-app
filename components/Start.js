@@ -7,7 +7,26 @@ const StartScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const imageBackground = require('../assets/background-img.png');
   const [bgColor, setBgColor] = useState('');
-  // Add icon image from assets folder to TextInput using Image component from react-native
+
+  const signInUser = () => {
+    // this function code allows a user to sign in anonymously. It returns a promise, which means you can attach .then() and .catch() to it
+    signInAnonymously(auth)
+      // you get an info object (represented by `result`) regarding the temporary user account
+      .then(result => {
+        if (result.user) {
+          // navigate to ChatScreen with user id, name, and bgColor
+          navigation.navigate('ChatScreen', {
+            userID: result.user.uid,
+            name: name,
+            bgColor: bgColor
+          })
+          Alert.alert('Signed in successfully!');
+        }
+      })
+      .catch((error) => {
+        Alert.alert('Unable to sign in, try again later.');
+      })
+  }
 
   return (
     // Entire component container
@@ -58,6 +77,7 @@ const StartScreen = ({ navigation }) => {
             </View>
           </View>
           {/* Chat button. TouchableOpacity more customizable. Added bgColor to navigate. */}
+          <TouchableOpacity style={styles.chatButton} onPress={signInUser}>
             <Text style={styles.chatButtonText}>Start Chatting</Text>
           </TouchableOpacity>
         </View>
