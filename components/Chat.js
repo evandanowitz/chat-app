@@ -42,6 +42,14 @@ const ChatScreen = ({ route, navigation }) => {
     }
   }, []);
 
+  /* The onSend() function is called when a user sends a message. The append() function appends the new message to the newMessage array. 
+  This onSend function saves sent messages on the Firestore database. addDoc() Firestore function saves the passed message to the function in the database 
+  Message to be added is the first item in the newMessages array (argument of the onSend function) */
+  const onSend = (newMessages) => {
+    // Passed newMessages[0] as third argument
+    addDoc(collection(db, 'messages'), newMessages[0])
+  }
+
   const renderBubble = (props) => {
     // returned Bubble component is from Gifted Chat's own package. Must import it.
     return (
