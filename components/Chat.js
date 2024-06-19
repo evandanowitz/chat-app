@@ -18,7 +18,28 @@ const ChatScreen = ({ route, navigation }) => {
 
   // useEffect gets called right after the ChatScreen component mounts
   useEffect(() => {
+    // Each msg with Gifted Chat library requires  an ID, a creation date, and user object. Each user object requires at least a user ID, a name, and an avatar
     navigation.setOptions({ title: name }); // set user's name at top of navigation bar
+    // onSnapshot() function listener targets the messages collection and makes sure the createdAt property sorts query results in descending order
+    const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+    /* The callback onSnapshot() constructs an array of messages from fetched docs and is array is assigned to messages state using setMessages(). 
+    Must convert the Timstamp stored at createdAt property of each message to a Date object that Gifted Chat understands. */
+    const unsubMessages = onSnapshot(q,(documentsSnapshot) => {
+      let newMessages = [];
+      documentsSnapshot.forEach(doc => {
+        newMessages.push({ 
+          id: doc.id, 
+          ...doc.data(), 
+          createdAt: new Date(doc.data().createdAt.toMillis())
+        })
+      })
+      setMessages(newMessages);
+    });
+
+    // Clean-up code. Call the unsubscribe function of onSnapshot() in useEffect() to clean up the returned function
+    return () => {
+      if (unsubMessages) unsubMessages();
+    }
   }, []);
 
   const renderBubble = (props) => {
