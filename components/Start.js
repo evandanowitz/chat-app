@@ -9,37 +9,46 @@ const StartScreen = ({ navigation }) => {
   // Add icon image from assets folder to TextInput using Image component from react-native
 
   return (
-    <View style={styles.container}> {/* Entire component container */}
-      <ImageBackground style={styles.imageBackground} source={imageBackground}> {/* App image background */}
-        <Text style={styles.title}>Chat App</Text> {/* App Title */}
-        <View style={styles.box}> {/* View component holding all main elements */}
-          <TextInput style={styles.textInput} // TextInput
+    // Entire component container
+    <View style={styles.container}>
+      {/* App image background */}
+      <ImageBackground style={styles.imageBackground} source={imageBackground}>
+        {/* App Title */}
+        <Text style={styles.title}>Chat App</Text>
+        {/* View component holding all main elements */}
+        <View style={styles.box}>
+          {/* TextInput */}
+          <TextInput style={styles.textInput}
             value={name}
             onChangeText={setName}
             placeholder='Your Name' 
           />
-          <View style={styles.bgColorBox}> {/* Entire background color element */}
-            <Text style={styles.chooseBgColorText}>Choose Background Color:</Text> {/* Choose Background Color text */}
-            <View style={styles.bgColorButtonsContainer}> {/* Container holding all background color buttons */}
-              <TouchableOpacity // Individual background color button
+          {/* Entire background color element */}
+          <View style={styles.bgColorBox}>
+            {/* Choose Background Color text */}
+            <Text style={styles.chooseBgColorText}>Choose Background Color:</Text>
+            {/* Container holding all background color buttons */}
+            <View style={styles.bgColorButtonsContainer}>
+              {/* Individual background color buttons */}
+              <TouchableOpacity
                 style={[ styles.bgColorButtons, 
                   { backgroundColor: '#090C08' }, 
                   bgColor === '#090C08' && styles.selectedBgColor
                 ]} 
                 onPress={() => setBgColor('#090C08')} />
-              <TouchableOpacity // Individual background color button
+              <TouchableOpacity
                 style={[ styles.bgColorButtons, 
                   { backgroundColor: '#474056' }, 
                   bgColor === '#474056' && styles.selectedBgColor
                 ]}  
                 onPress={() => setBgColor('#474056')} />
-              <TouchableOpacity // Individual background color button
+              <TouchableOpacity
                 style={[ styles.bgColorButtons, 
                   { backgroundColor: '#8A95A5' }, 
                   bgColor === '#8A95A5' && styles.selectedBgColor
                 ]}  
                 onPress={() => setBgColor('#8A95A5')} />
-              <TouchableOpacity // Individual background color button
+              <TouchableOpacity
                 style={[ styles.bgColorButtons, 
                 { backgroundColor: '#B9C6AE' }, 
                 bgColor === '#B9C6AE' && styles.selectedBgColor
@@ -47,10 +56,7 @@ const StartScreen = ({ navigation }) => {
                 onPress={() => setBgColor('#B9C6AE')} />
             </View>
           </View>
-          <TouchableOpacity style={styles.chatButton} // Chat button. TouchableOpacity more customizable. Added bgColor to navigate.
-            title='Start Chatting'
-            onPress={() => navigation.navigate('ChatScreen', { name: name, bgColor: bgColor })}
-          >
+          {/* Chat button. TouchableOpacity more customizable. Added bgColor to navigate. */}
             <Text style={styles.chatButtonText}>Start Chatting</Text>
           </TouchableOpacity>
         </View>
