@@ -3,7 +3,7 @@ import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bubble, GiftedChat } from 'react-native-gifted-chat'; // import GiftedChat library for chat interface
 import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 
-const ChatScreen = ({ route, navigation }) => {
+const ChatScreen = ({ route, navigation, db }) => {
   /* route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when 
   it was navigated to from StartScreen used to unpack properties from objects into variables */
   const { name, bgColor, userID } = route.params;
