@@ -82,6 +82,8 @@ const StartScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
+      {/* Fix for input field in ChatScreen being hidden by Keyboard on certain Android devices */}
+      { Platform.OS === 'android' ? ( <KeyboardAvoidingView behavior='height' /> ) : null }
     </View>
   )
 }
