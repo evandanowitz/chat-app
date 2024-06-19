@@ -9,12 +9,6 @@ const ChatScreen = ({ route, navigation, db }) => {
   const { name, bgColor, userID } = route.params;
   const [messages, setMessages] = useState([]);
 
-  // the onSend() function is called when a user sends a message.
-  // the append() function appends the new message to the newMessage array.
-  const onSend = (newMessages) => {
-    setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
-  }
-
   // useEffect gets called right after the ChatScreen component mounts
   useEffect(() => {
     // Each msg with Gifted Chat library requires  an ID, a creation date, and user object. Each user object requires at least a user ID, a name, and an avatar
