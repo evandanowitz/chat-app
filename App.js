@@ -28,9 +28,10 @@ const App = () => {
           component={StartScreen} 
         />
         <Stack.Screen 
-          name="ChatScreen" 
-          component={ChatScreen} 
-        />
+          name='ChatScreen'
+        >
+          {props => <ChatScreen db={db} {...props} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
