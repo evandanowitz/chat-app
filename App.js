@@ -1,5 +1,6 @@
 import { StyleSheet, LogBox } from 'react-native';
 
+// Import the screen components
 import StartScreen from './components/Start.js';
 import ChatScreen from './components/Chat.js';
 
@@ -20,10 +21,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="StartScreen"
+        initialRouteName='StartScreen'
       >
         <Stack.Screen 
-          name="StartScreen" 
+          name='StartScreen' 
           component={StartScreen} 
         />
         <Stack.Screen 
