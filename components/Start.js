@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, A
 import { getAuth, signInAnonymously } from 'firebase/auth';
 
 const StartScreen = ({ navigation }) => {
+  const auth = getAuth(); // Initialize Firebase Authenticatio handler using getAuth() function
   const [name, setName] = useState('');
   const imageBackground = require('../assets/background-img.png');
   const [bgColor, setBgColor] = useState('');
