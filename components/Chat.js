@@ -6,8 +6,7 @@ import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firesto
 const ChatScreen = ({ route, navigation }) => {
   /* route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when 
   it was navigated to from StartScreen used to unpack properties from objects into variables */
-  const { name, bgColor } = route.params;
-  // messages state makes sense here, as a chat app needs to send, receive, and display messages.
+  const { name, bgColor, userID } = route.params;
   const [messages, setMessages] = useState([]);
 
   // the onSend() function is called when a user sends a message.
