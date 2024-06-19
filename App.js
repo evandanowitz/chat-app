@@ -11,13 +11,21 @@ import { getFirestore } from 'firebase/firestore';
 // Import React Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
 LogBox.ignoreLogs(['AsyncStorage has been extracted from']);
 
 const App = () => {
+  // Chat app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6VxEofP-5AOctHSpX4NNP6rEdEHJT-VA",
+    authDomain: "chat-app-eaa8e.firebaseapp.com",
+    projectId: "chat-app-eaa8e",
+    storageBucket: "chat-app-eaa8e.appspot.com",
+    messagingSenderId: "346516409691",
+    appId: "1:346516409691:web:a14f1832e92c019a775e7e"
+  };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
