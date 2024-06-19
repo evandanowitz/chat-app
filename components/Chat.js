@@ -70,7 +70,10 @@ const ChatScreen = ({ route, navigation }) => {
         messages={messages}
         renderBubble={renderBubble} // Add and customize renderBubble component to change speech bubble color
         onSend={messages => onSend(messages)}
-        user={{ _id: 1 }}
+        user={{ 
+          _id: userID, // _id has value (userID) of the route parameter passed from the StartScreen when logged in anonymously. Extracted from route.params
+          name: name // name has the value (name) of the name route parameter passed from StartScreen when logged in anonymously. Extracted from route.params
+        }}
       />
       {/* Fix for input field in ChatScreen being hidden by Keyboard on certain Android devices */}
       { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
