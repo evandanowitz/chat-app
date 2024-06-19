@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 
 const StartScreen = ({ navigation }) => {
   const [name, setName] = useState('');
