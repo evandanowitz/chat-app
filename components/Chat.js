@@ -75,9 +75,7 @@ const ChatScreen = ({ route, navigation }) => {
         }}
       />
       {/* Fix for input field in ChatScreen being hidden by Keyboard on certain Android devices */}
-      { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
-      { Platform.OS === 'ios' ? <KeyboardAvoidingView behavior="padding" /> : null }
-      {/* <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} /> */}
+      { Platform.OS === 'android' ? ( <KeyboardAvoidingView behavior='height' /> ) : null }
     </View>
   );
 }
