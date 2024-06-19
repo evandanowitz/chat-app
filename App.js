@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, LogBox } from 'react-native';
+
 import StartScreen from './components/Start.js';
 import ChatScreen from './components/Chat.js';
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Create the navigator
 const Stack = createNativeStackNavigator();
+
+LogBox.ignoreLogs(['AsyncStorage has been extracted from']);
 
 const App = () => {
   return (
