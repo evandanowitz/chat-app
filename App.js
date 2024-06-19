@@ -18,6 +18,10 @@ const Stack = createNativeStackNavigator();
 LogBox.ignoreLogs(['AsyncStorage has been extracted from']);
 
 const App = () => {
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
   return (
     <NavigationContainer>
       <Stack.Navigator 
