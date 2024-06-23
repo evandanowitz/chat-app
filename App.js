@@ -4,7 +4,6 @@ import { StyleSheet, LogBox, Alert } from 'react-native';
 // Import the screen components
 import StartScreen from './components/Start.js';
 import ChatScreen from './components/Chat.js';
-
 // Import Firestore
 import { initializeApp } from 'firebase/app';
 import { getFirestore, enableNetwork, disableNetwork } from 'firebase/firestore';
@@ -28,6 +27,9 @@ const App = () => {
     appId: "1:346516409691:web:a14f1832e92c019a775e7e"
   };
 
+  const app = initializeApp(firebaseConfig); // Initialize Firebase
+  const db = getFirestore(app); // Initialize Cloud Firestore and get a reference to the service
+  
   const connectionStatus = useNetInfo(); // useNetInfo returns latest value of network connection state
 
   // a real-time network connectivity detection system in useEffect
@@ -44,12 +46,15 @@ const App = () => {
 
   return (
     <NavigationContainer>
+      <Stack.Navigator initialRouteName='StartScreen'>
+        <Stack.Screen name='StartScreen' component={StartScreen} />
+        <Stack.Screen name='ChatScreen'>
           {props => <ChatScreen isConnected={connectionStatus.isConnected} db={db} {...props} /> }
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
