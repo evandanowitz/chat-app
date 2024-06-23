@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
-import { Bubble, GiftedChat } from 'react-native-gifted-chat'; // import GiftedChat library for chat interface
+import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';  // import GiftedChat library for chat interface
 import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 
 const ChatScreen = ({ route, navigation, db }) => {
@@ -15,6 +15,7 @@ const ChatScreen = ({ route, navigation, db }) => {
     navigation.setOptions({ title: name }); // set user's name at top of navigation bar
     // onSnapshot() function listener targets the messages collection and makes sure the createdAt property sorts query results in descending order
     const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+
     /* The callback onSnapshot() constructs an array of messages from fetched docs and is array is assigned to messages state using setMessages(). 
     Must convert the Timstamp stored at createdAt property of each message to a Date object that Gifted Chat understands. */
     const unsubMessages = onSnapshot(q,(documentsSnapshot) => {
@@ -62,6 +63,7 @@ const ChatScreen = ({ route, navigation, db }) => {
       <GiftedChat
         messages={messages}
         renderBubble={renderBubble} // Add and customize renderBubble component to change speech bubble color
+        renderInputToolbar={renderInputToolbar}
         onSend={(messages) => onSend(messages)} // a way to pass the messages data from the GiftedChat component to the onSend function
         user={{ 
           _id: userID, // _id has value (userID) of the route parameter passed from the StartScreen when logged in anonymously. Extracted from route.params
