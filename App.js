@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { StyleSheet, LogBox, Alert } from 'react-native';
 // Import the screen components
 import StartScreen from './components/Start.js';
