@@ -44,6 +44,14 @@ const ChatScreen = ({ route, navigation, db, isConnected }) => {
     }
   }, [isConnected]);
 
+  const cacheMessages = async (messagesToCache) => {
+    try {
+      await AsyncStorage.setItem('messages', JSON.stringify(messagesToCache));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   /* The onSend() function is called when a user sends a message. The append() function appends the new message to the newMessage array. 
   This onSend function saves sent messages on the Firestore database. addDoc() Firestore function saves the passed message to the function in the database 
   Message to be added is the first item in the newMessages array (argument of the onSend function) */
