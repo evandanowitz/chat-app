@@ -15,7 +15,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
-LogBox.ignoreLogs(['AsyncStorage has been extracted from']);
+LogBox.ignoreLogs(['AsyncStorage has been extracted from', '@firebase/auth:']);
 
 const App = () => {
   // Chat app's Firebase configuration
