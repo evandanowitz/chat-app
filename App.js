@@ -1,5 +1,4 @@
-import { StyleSheet, LogBox } from 'react-native';
-
+import { StyleSheet, LogBox, Alert } from 'react-native';
 // Import the screen components
 import StartScreen from './components/Start.js';
 import ChatScreen from './components/Chat.js';
