@@ -9,16 +9,21 @@ const ChatScreen = ({ route, navigation, db, isConnected }) => {
   const { name, bgColor, userID } = route.params;
   const [messages, setMessages] = useState([]);
 
+  let unsubMessages;
   // useEffect gets called right after the ChatScreen component mounts
   useEffect(() => {
-    // Each msg with Gifted Chat library requires  an ID, a creation date, and user object. Each user object requires at least a user ID, a name, and an avatar
-    navigation.setOptions({ title: name }); // set user's name at top of navigation bar
+    // Each msg with Gifted Chat library requires an ID, a creation date, and user object. Each user object requires at least a user ID, a name, and an avatar
+    navigation.setOptions({ title: name });  // set user's name at top of navigation bar
+
+    if (isConnected === true) {
+      if (unsubMessages) unsubMessages();
+      unsubMessages = null;
     // onSnapshot() function listener targets the messages collection and makes sure the createdAt property sorts query results in descending order
     const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
 
     /* The callback onSnapshot() constructs an array of messages from fetched docs and is array is assigned to messages state using setMessages(). 
     Must convert the Timstamp stored at createdAt property of each message to a Date object that Gifted Chat understands. */
-    const unsubMessages = onSnapshot(q,(documentsSnapshot) => {
+      unsubMessages = onSnapshot(q,(documentsSnapshot) => {
       let newMessages = [];
       documentsSnapshot.forEach(doc => {
         newMessages.push({ 
@@ -27,14 +32,16 @@ const ChatScreen = ({ route, navigation, db, isConnected }) => {
           createdAt: new Date(doc.data().createdAt.toMillis())
         })
       })
+        cacheMessages(newMessages);
       setMessages(newMessages);
-    });
+      })
+    } else loadCachedMessages();
 
     // Clean-up code. Call the unsubscribe function of onSnapshot() in useEffect() to clean up the returned function
     return () => {
       if (unsubMessages) unsubMessages();
     }
-  }, []);
+  }, [isConnected]);
 
   /* The onSend() function is called when a user sends a message. The append() function appends the new message to the newMessage array. 
   This onSend function saves sent messages on the Firestore database. addDoc() Firestore function saves the passed message to the function in the database 
