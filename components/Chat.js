@@ -6,7 +6,7 @@ import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const ChatScreen = ({ route, navigation, db, isConnected }) => {
   /* route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when 
-  it was navigated to from StartScreen used to unpack properties from objects into variables */
+    it was navigated to from StartScreen used to unpack properties from objects into variables */
   const { name, bgColor, userID } = route.params;
   const [messages, setMessages] = useState([]);
 
@@ -19,22 +19,22 @@ const ChatScreen = ({ route, navigation, db, isConnected }) => {
     if (isConnected === true) {
       if (unsubMessages) unsubMessages();
       unsubMessages = null;
-    // onSnapshot() function listener targets the messages collection and makes sure the createdAt property sorts query results in descending order
-    const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+      // onSnapshot() function listener targets the messages collection and makes sure the createdAt property sorts query results in descending order
+      const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
 
-    /* The callback onSnapshot() constructs an array of messages from fetched docs and is array is assigned to messages state using setMessages(). 
-    Must convert the Timstamp stored at createdAt property of each message to a Date object that Gifted Chat understands. */
+      /* The callback onSnapshot() constructs an array of messages from fetched docs and is array is assigned to messages state using setMessages(). 
+      Must convert the Timstamp stored at createdAt property of each message to a Date object that Gifted Chat understands. */
       unsubMessages = onSnapshot(q,(documentsSnapshot) => {
-      let newMessages = [];
-      documentsSnapshot.forEach(doc => {
-        newMessages.push({ 
-          id: doc.id, 
-          ...doc.data(), 
-          createdAt: new Date(doc.data().createdAt.toMillis())
+        let newMessages = [];
+        documentsSnapshot.forEach(doc => {
+          newMessages.push({
+            id: doc.id,
+            ...doc.data(),
+            createdAt: new Date(doc.data().createdAt.toMillis())
+          })
         })
-      })
         cacheMessages(newMessages);
-      setMessages(newMessages);
+        setMessages(newMessages);
       })
     } else loadCachedMessages();
 
@@ -52,6 +52,11 @@ const ChatScreen = ({ route, navigation, db, isConnected }) => {
     }
   };
 
+  const loadCachedMessages = async () => {
+    const cachedMessages = await AsyncStorage.getItem('messages') || [];
+    setMessages(JSON.parse(cachedMessages));
+  };
+
   /* The onSend() function is called when a user sends a message. The append() function appends the new message to the newMessage array. 
   This onSend function saves sent messages on the Firestore database. addDoc() Firestore function saves the passed message to the function in the database 
   Message to be added is the first item in the newMessages array (argument of the onSend function) */
@@ -63,13 +68,12 @@ const ChatScreen = ({ route, navigation, db, isConnected }) => {
   const renderBubble = (props) => {
     // returned Bubble component is from Gifted Chat's own package. Must import it.
     return <Bubble
-        {...props}
-        wrapperStyle={{
-          right: { backgroundColor: '#000' },
-          left: { backgroundColor: '#fff' }
-        }}
-      />
-    )
+      {...props}
+      wrapperStyle={{
+        right: { backgroundColor: '#000' },
+        left: { backgroundColor: '#fff' }
+      }}
+    />
   }
 
   const renderInputToolbar = (props) => {
