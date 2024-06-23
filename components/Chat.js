@@ -46,8 +46,7 @@ const ChatScreen = ({ route, navigation, db }) => {
 
   const renderBubble = (props) => {
     // returned Bubble component is from Gifted Chat's own package. Must import it.
-    return (
-      <Bubble
+    return <Bubble
         {...props}
         wrapperStyle={{
           right: { backgroundColor: '#000' },
@@ -56,6 +55,11 @@ const ChatScreen = ({ route, navigation, db }) => {
       />
     )
   }
+
+  const renderInputToolbar = (props) => {
+    if (isConnected) return <InputToolbar {...props} />;
+    else return null;
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
