@@ -44,17 +44,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator 
-        initialRouteName='StartScreen'
-      >
-        <Stack.Screen 
-          name='StartScreen' 
-          component={StartScreen} 
-        />
-        <Stack.Screen 
-          name='ChatScreen'
-        >
-          {props => <ChatScreen db={db} {...props} />}
+          {props => <ChatScreen isConnected={connectionStatus.isConnected} db={db} {...props} /> }
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
