@@ -28,11 +28,19 @@ const App = () => {
     appId: "1:346516409691:web:a14f1832e92c019a775e7e"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  const connectionStatus = useNetInfo(); // useNetInfo returns latest value of network connection state
 
-  // Initialize Cloud Firestore and get a reference to the service
-  const db = getFirestore(app);
+  // a real-time network connectivity detection system in useEffect
+  useEffect(() => {
+    // if no connection, alert user. Firebase WILL NOT attempt to reconnect to Firestore Database
+    if (connectionStatus.isConnected === false) {
+      Alert.alert('Connection lost!');
+      disableNetwork(db);
+      // if connection is recognized, Firebase WILL attempt to reconnect to Firestore Database
+    } else if (connectionStatus.isConnected === true) {
+      enableNetwork(db);
+    }
+  }, [connectionStatus.isConnected]); // isConnected prop represents the conneciton status
 
   return (
     <NavigationContainer>
