@@ -6,12 +6,12 @@ import StartScreen from './components/Start.js';
 import ChatScreen from './components/Chat.js';
 
 // Import Firestore
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
-
+import { initializeApp } from 'firebase/app';
+import { getFirestore, enableNetwork, disableNetwork } from 'firebase/firestore';
 // Import React Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
