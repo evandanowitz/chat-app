@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';  // import GiftedChat library for chat interface
 import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const ChatScreen = ({ route, navigation, db, isConnected }) => {
   /* route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when 
