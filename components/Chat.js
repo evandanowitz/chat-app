@@ -62,7 +62,7 @@ const ChatScreen = ({ route, navigation, db }) => {
       <GiftedChat
         messages={messages}
         renderBubble={renderBubble} // Add and customize renderBubble component to change speech bubble color
-        onSend={messages => onSend(messages)}
+        onSend={(messages) => onSend(messages)} // a way to pass the messages data from the GiftedChat component to the onSend function
         user={{ 
           _id: userID, // _id has value (userID) of the route parameter passed from the StartScreen when logged in anonymously. Extracted from route.params
           name: name // name has the value (name) of the name route parameter passed from StartScreen when logged in anonymously. Extracted from route.params
