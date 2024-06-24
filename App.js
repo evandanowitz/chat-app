@@ -14,7 +14,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
-LogBox.ignoreLogs(['AsyncStorage has been extracted from', '@firebase/auth:']);
+LogBox.ignoreLogs(
+  [
+    'AsyncStorage has been extracted from', 
+    '@firebase/auth:',
+    'Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.'
+  ]
+);
 
 const App = () => {
   // Chat app's Firebase configuration
