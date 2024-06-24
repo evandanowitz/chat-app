@@ -7,6 +7,8 @@ import ChatScreen from './components/Chat.js';
 // Import Firestore
 import { initializeApp } from 'firebase/app';
 import { getFirestore, enableNetwork, disableNetwork } from 'firebase/firestore';
+// Import Storage
+import { getStorage } from 'firebase/storage';
 // Import React Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -35,6 +37,7 @@ const App = () => {
 
   const app = initializeApp(firebaseConfig); // Initialize Firebase
   const db = getFirestore(app); // Initialize Cloud Firestore and get a reference to the service
+  const storage = getStorage(app); // Initialize the storage handler
   
   const connectionStatus = useNetInfo(); // useNetInfo returns latest value of network connection state
 
