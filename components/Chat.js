@@ -4,7 +4,7 @@ import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';  //
 import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
-const ChatScreen = ({ route, navigation, db, isConnected }) => {
+const ChatScreen = ({ route, navigation, db, isConnected, storage }) => {
   /* route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when 
     it was navigated to from StartScreen used to unpack properties from objects into variables */
   const { name, bgColor, userID } = route.params;
