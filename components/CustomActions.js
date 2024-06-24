@@ -2,6 +2,13 @@ import { TouchableOpacity, Text, View, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID }) => {
+  return (
+    <TouchableOpacity style={styles.container} onPress={onActionPress}>
+      <View style={[styles.wrapper, wrapperStyle]}>
+        <Text style={[styles.iconText, iconTextStyle]}>+</Text>
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 export default CustomActions;
