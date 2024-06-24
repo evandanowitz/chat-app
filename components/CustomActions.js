@@ -1,7 +1,9 @@
 import { TouchableOpacity, Text, View, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID }) => {
+  const actionSheet = useActionSheet(); // Should return a reference to Gifted Chat's ActionSheet.
   return (
     <TouchableOpacity style={styles.container} onPress={onActionPress}>
       accessible={true}
