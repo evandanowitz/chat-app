@@ -4,6 +4,10 @@ import * as Location from 'expo-location';
 const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onActionPress}>
+      accessible={true}
+      accessibilityLabel='More communication features'
+      accessibilityHint='Choose to send an image from your library, take a new photo, send your location, or cancel.'
+      accessibilityRole='button'
       <View style={[styles.wrapper, wrapperStyle]}>
         <Text style={[styles.iconText, iconTextStyle]}>+</Text>
       </View>
