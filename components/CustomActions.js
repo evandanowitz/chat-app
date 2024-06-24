@@ -4,6 +4,28 @@ import * as Location from 'expo-location';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID }) => {
   const actionSheet = useActionSheet(); // Should return a reference to Gifted Chat's ActionSheet.
+  const onActionPress = () => {
+    const options = ['Select Photo from Library', 'Take Photo', 'Send Location', 'Cancel'];
+    const cancelButtonIndex = options.length - 1;
+    // This reference (object) contains the showActionSheetWithOptions() function, which will initialize and show the ActionSheet.
+    actionSheet.showActionSheetWithOptions (
+      { options, cancelButtonIndex },
+      async (buttonIndex) => {
+        switch (buttonIndex) {
+          case 0:
+            pickImage();
+            return;
+          case 1:
+            takePhoto();
+            return;
+          case 2:
+            getLocation();
+          default:
+        }
+      }
+    );
+  };
+
   return (
     <TouchableOpacity style={styles.container} onPress={onActionPress}>
       accessible={true}
