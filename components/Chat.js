@@ -81,6 +81,16 @@ const ChatScreen = ({ route, navigation, db, isConnected, storage }) => {
     else return null;
   };
 
+  // this function is responsible for creating the circle button
+  const renderCustomActions = (props) => {
+    return <CustomActions 
+      storage={storage} // pass storage to CustomActions component so that you can use it in the location where picking images and taking photos takes place
+      {...props} // this props object contains Gifted Chat's onSend() method. CustomActions component now has access to onSend()
+      userID={userID}
+    />;
+  };
+
+
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
       {/* Render GiftedChat component that comes with its own props. */}
