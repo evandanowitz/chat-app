@@ -28,6 +28,13 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
     );
   };
 
+  // function has one argument that represents the picked image's URI. The function combines multiple strings to produce a string that can be used as a unique reference for the iamge to be uploaded.
+  const generateReference = (uri) => {
+    const timeStamp = (new Date()).getTime();
+    const imageName = uri.split('/')[uri.split('/').length - 1];
+    return `${userID}-${timeStamp}-${imageName}`;
+  }
+
   return (
     <TouchableOpacity style={styles.container} onPress={onActionPress}>
       accessible={true}
