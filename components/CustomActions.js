@@ -28,9 +28,9 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
     );
   };
 
-  /* this function genereates a uniue reference string for an image, creates a new 
-  storage reference, fetches the image as a blob, uploads it to cloud storage, retrieves 
-  the download URL, and sends the image URL using the onSend method. */
+  /* this function genereates a unique reference string for an image, creates a new storage reference, 
+  fetches the image as a blob, uploads it to cloud storage, retrieves the download URL, 
+  and sends the image URL using the onSend method. */
   const uploadAndSendImage = async (imageURI) => {
     const uniqueRefString = generateReference(imageURI);
     // to upload a file, you need to prepare a new reference for it on the Storage Cloud
@@ -87,11 +87,14 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onActionPress}>
+    <TouchableOpacity 
+      style={styles.container} 
+      onPress={onActionPress}
       accessible={true}
       accessibilityLabel='More communication features'
       accessibilityHint='Choose to send an image from your library, take a new photo, send your location, or cancel.'
       accessibilityRole='button'
+    >
       <View style={[styles.wrapper, wrapperStyle]}>
         <Text style={[styles.iconText, iconTextStyle]}>+</Text>
       </View>
