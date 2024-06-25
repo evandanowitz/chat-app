@@ -28,6 +28,22 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
     );
   };
 
+  /* this function genereates a uniue reference string for an image, creates a new 
+  storage reference, fetches the image as a blob, uploads it to cloud storage, retrieves 
+  the download URL, and sends the image URL using the onSend method. */
+  const uploadAndSendImage = async (imageURI) => {
+    const uniqueRefString = generateReference(imageURI);
+    // to upload a file, you need to prepare a new reference for it on the Storage Cloud
+    const newUploadRef = ref(storage, uniqueRefString);
+    const response = await fetch(imageURI);
+    const blob = await response.blob();
+    // uploadBytes() is the function you'll use to upload the file. 'newUploadRef' is the reference that the file will be uploaded to. 'blob' is the blob of the image file you want to upload
+    uploadBytes(newUploadRef, blob).then(async (snapshot) => {
+      const imageURL = await getDownloadURL(snapshot.ref)
+      onSend({ image: imageURL })
+    });
+  }
+
   const pickImage = async () => {
     let permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissions?.granted) {
