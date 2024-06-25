@@ -90,6 +90,29 @@ const ChatScreen = ({ route, navigation, db, isConnected, storage }) => {
     />;
   };
 
+  // renderCustomView function checks if the currentMessage contains location data. If yes, it will return a MapView
+  const renderCustomView = (props) => {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{
+            width: 150, 
+            height: 100, 
+            borderRadius: 13, 
+            margin: 3 
+          }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }}
+        />
+      )
+    }
+    return null;
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
