@@ -28,6 +28,23 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
     );
   };
 
+  const getLocation = async () => {
+    let permissions = await Location.requestForegroundPermissionsAsync();
+    if (permissions?.granted) {
+      const location = await Location.getCurrentPositionAsync({});
+      if (location) {
+        // if there is location data, you are sending a message that only contains the location property (though there are other properties added by default, such as createdAt, _id, and user)
+        onSend({
+          // the object assigned to the location property below contains all the data necessary for renderCustomView to render the MapView in a message bubble
+          location: {
+            longitude: location.coords.longitude,
+            latitude: location.coords.latitude
+          }
+        });
+      } else Alert.alert('Error occurred while fetching location');
+    } else Alert.alert('Permissions have not been granted.');
+  }
+
   // function has one argument that represents the picked image's URI. The function combines multiple strings to produce a string that can be used as a unique reference for the iamge to be uploaded.
   const generateReference = (uri) => {
     const timeStamp = (new Date()).getTime();
