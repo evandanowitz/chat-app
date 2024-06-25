@@ -4,6 +4,7 @@ import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';  //
 import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
 import CustomActions from './CustomActions';
+import MapView from 'react-native-maps';
 
 const ChatScreen = ({ route, navigation, db, isConnected, storage }) => {
   /* route.params is a React Navigation object. Contains paramaters passed to the ChatScreen when 
