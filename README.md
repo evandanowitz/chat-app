@@ -42,7 +42,7 @@
 
 **Step 5.** Navigate to the 'Rules' tab of the Firebase Storage section of the Firebase Console, and ensure that the read and write rules are set to true, not false. The line of code should look like the following: `allow read, write: if true;`
 
-**Step 6.** Start the Expo development server: `npx expo start`
+**Step 6.** Start the Expo development server by running one of the following: `npx expo start` or `npm start`
 -  Your app will build and run on your device using Metro Builder. Press `a` for Android emulator, `i` for iOS simulator, `w` for web browser, or you can use the Expo Go app from the App Store or Google Play Store.
 
 ## Technologies
