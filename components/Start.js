@@ -34,7 +34,7 @@ const StartScreen = ({ navigation }) => {
       {/* App image background */}
       <ImageBackground style={styles.imageBackground} source={imageBackground}>
         {/* App Title */}
-        <Text style={styles.title}>Chat App</Text>
+        <Text style={styles.title}>Chatterbox</Text>
         {/* View component holding all main elements */}
         <View style={styles.box}>
           {/* TextInput */}
